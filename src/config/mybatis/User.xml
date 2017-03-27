@@ -8,10 +8,8 @@
 				and userid like concat('%',#{userid}, '%')	          
 		</if>		
 	</select>
-	
-	
-	
 
+	
 	
 	
 	
