@@ -5,6 +5,7 @@ import com.sj.ilaoshi.common.constants.Constants;
 import com.sj.ilaoshi.common.util.CookieUtil;
 import com.sj.ilaoshi.service.UserIdentityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,10 +16,13 @@ import javax.servlet.http.HttpServletResponse;
  * 访问拦截器
  * Created by slt on 2017/3/27.
  */
-@SuppressWarnings("ALL")
+@Component
 public class LoginHandlerInterceptor implements HandlerInterceptor {
+    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
-    UserIdentityService userIdentityService;
+    private UserIdentityService userIdentityService;
+
+    private static final String loginPath="/login";
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse
             , Object o) throws Exception {
         //获取cookie中的唯一标识符
@@ -26,17 +30,15 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 
         if(StringUtils.isNullOrEmpty(uniqueId)){
             //跳转到登录页面
-            httpServletResponse.sendRedirect("redirect:/login");
+            httpServletResponse.sendRedirect("redirect:"+loginPath);
             return false;
         }
         Long userId=userIdentityService.getUserId(uniqueId);
         if(userId==null) {
             //唯一标识验证无效，跳转到登录页面
-            httpServletResponse.sendRedirect("redirect:/login");
+            httpServletResponse.sendRedirect("redirect:"+loginPath);
             return false;
-
         }
-
         return true;
     }
 

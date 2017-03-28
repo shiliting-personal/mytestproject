@@ -11,5 +11,7 @@ import java.util.Map;
 public interface UserSignatureDao {
     UserSignature findOne(long id);
 
+    UserSignature findBySecretId(long secretId);
+
     void addOne(Map map);
 }

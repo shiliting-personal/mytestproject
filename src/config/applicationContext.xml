@@ -5,13 +5,13 @@
     xmlns:tx="http://www.springframework.org/schema/tx" 
     xmlns:mvc="http://www.springframework.org/schema/mvc"  
     xsi:schemaLocation="http://www.springframework.org/schema/beans  
-     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+     http://www.springframework.org/schema/beans/spring-beans.xsd
      http://www.springframework.org/schema/context  
-   	 http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+   	 http://www.springframework.org/schema/context/spring-context.xsd
    	 http://www.springframework.org/schema/tx 
-   	 http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+   	 http://www.springframework.org/schema/tx/spring-tx.xsd
      http://www.springframework.org/schema/mvc  
-     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+     http://www.springframework.org/schema/mvc/spring-mvc.xsd
      http://mybatis.org/schema/mybatis-spring 
      http://mybatis.org/schema/mybatis-spring.xsd ">
        
@@ -48,34 +48,49 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+
+
 	<tx:annotation-driven transaction-manager="txManager" />
-	
+
 	<!-- <context:annotation-config/>  -->
 	
-	<mvc:annotation-driven />
-	
-	
+    <mvc:annotation-driven>
+        <mvc:argument-resolvers>
+            <bean class="com.sj.ilaoshi.common.resolover.TokenHotUserResolver"></bean>
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
+
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
+        <!--<property name="synchronizeOnSession" value="true" />-->
+        <!--<property name="customArgumentResolvers">-->
+            <!--<list>-->
+                <!--<bean class="com.sj.ilaoshi.common.resolover.TokenHotUserResolver"></bean>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+
+
 	<!-- 设置使用注解的类所在的包 -->
 	<context:component-scan base-package="com.sj.ilaoshi" />
 
-	
-	
-	
-	<mvc:resources mapping="/resources/images/**" location="/resources/images/" />
+
+    <mvc:resources mapping="/resources/images/**" location="/resources/images/" />
 	<mvc:resources mapping="/resources/js/**" location="/resources/js/" />
 	<mvc:resources mapping="/resources/css/**" location="/resources/css/" />
 
-	<!-- 访问拦截  -->
-	<mvc:interceptors>
-        <mvc:interceptor>
-        <mvc:mapping path="/**"/>
-            <bean class="com.sj.ilaoshi.common.interceptor.LoginHandlerInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="**/api/**"/>
-            <bean class="com.sj.ilaoshi.common.interceptor.ApiHandlerInterceptor"/>
-        </mvc:interceptor>
-	</mvc:interceptors>
-    <mvc:exclude-mapping path="/check/**"/>
+
+    <!-- 访问拦截  -->
+	<!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+        <!--<mvc:mapping path="/**"/>-->
+            <!--<bean class="com.sj.ilaoshi.common.interceptor.LoginHandlerInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="**/api/**"/>-->
+            <!--<bean class="com.sj.ilaoshi.common.interceptor.ApiHandlerInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+	<!--</mvc:interceptors>-->
+    <!--<mvc:exclude-mapping path="/check/**"/>-->
 
 </beans>

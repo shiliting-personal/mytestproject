@@ -1,13 +1,16 @@
 package com.sj.ilaoshi.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sj.ilaoshi.common.constants.Constants;
+import com.sj.ilaoshi.common.resolover.TokenHotUser;
+import com.sj.ilaoshi.common.util.ModelMapUtil;
 import com.sj.ilaoshi.entity.User;
 import com.sj.ilaoshi.service.UserService;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -55,29 +58,33 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/login")
-	public void  login(PrintWriter printWriter,HttpServletResponse response,HttpServletRequest request)  throws Exception{
+    @ResponseBody
+    @TokenHotUser
+    public ModelMap login(String userid, String password)  throws Exception{
 		
-		System.out.println("-----"+request.getMethod());
-		
-		String user = "{\"username\":\"admin\",\"age\":\"18\"}";	
+//		System.out.println("-----"+request.getMethod());
+//
+//		String user = "{\"username\":\"admin\",\"age\":\"18\"}";
+//
+//		JSONObject jsonObject  = JSONObject.parseObject(user);
+//
+//		JSONObject json = new JSONObject();
+//		json.put("code", "0000");
+//		json.put("msg", Constants.LOGIN_SUCCESS);
+//		json.put("result", jsonObject);
+//
+//		Cookie cookie = new Cookie("token","111111");
+//
+//        cookie.setMaxAge(30 * 60);
+//        cookie.setPath("/");
+//        cookie.setHttpOnly(true);
+//        response.addCookie(cookie);
+//
+//		printWriter.write(json.toString());
+//		printWriter.flush();
+//		printWriter.close();
 
-		JSONObject jsonObject  = JSONObject.parseObject(user);
-		
-		JSONObject json = new JSONObject();
-		json.put("code", "0000");
-		json.put("msg", Constants.LOGIN_SUCCESS);
-		json.put("result", jsonObject);
-		
-		Cookie cookie = new Cookie("token","111111");
-		
-        cookie.setMaxAge(30 * 60);
-        cookie.setPath("/");
-        cookie.setHttpOnly(true);
-        response.addCookie(cookie);
-		
-		printWriter.write(json.toString());
-		printWriter.flush();
-		printWriter.close();
+		return ModelMapUtil.createDefaultSuccessModelMap();
 	}
 	  /**
      * 根据名字获取cookie

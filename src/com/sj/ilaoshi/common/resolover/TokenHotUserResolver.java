@@ -8,38 +8,41 @@
 
 package com.sj.ilaoshi.common.resolover;
 
-import com.huotu.huotao.repository.HotUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
+
 /**
  *  token转HotUser处理器
  * @author slt
  */
-@Component
+//@Component
 public class TokenHotUserResolver implements HandlerMethodArgumentResolver {
-    @Autowired
-    private HotUserRepository hotUserRepository;
-
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterAnnotation(TokenHotUser.class) != null;
+        return parameter.getMethodAnnotation(TokenHotUser.class)!=null;
     }
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer
             , NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        String token = webRequest.getParameter("token");
-        if(StringUtils.isEmpty(token)){
-            return null;
-        }
-        return hotUserRepository.findByToken(token);
+
+        HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
+
+        String token =request.getParameter("data");
+        Method method=parameter.getMethod();
+        method.invoke(method.getClass(),new Object[]{"i love you","i fuck you"});
+        return null;
+
+//        if(StringUtils.isEmpty(token)){
+//            return null;
+//        }
+//        return null;
     }
 }

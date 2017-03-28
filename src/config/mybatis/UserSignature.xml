@@ -38,6 +38,10 @@
 		select * from UserSignature where id=#{id}
 	</select>
 
+    <select id="findBySecretId" parameterType="map" resultType="com.sj.ilaoshi.entity.UserSignature">
+        select * from UserSignature where secretId=#{secretId}
+    </select>
+
 	
 	
 	

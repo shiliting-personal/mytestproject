@@ -6,4 +6,8 @@ public class Constants {
      * 用户登录唯一标识符名称
      */
 	public final static String USER_UNIQUEID_NAME="uniqueId";
+
+	public final static String SIGN_NAME="sign";
+
+	public final static String SECRETID="secretId";
 }
