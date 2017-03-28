@@ -37,87 +37,31 @@
 	 <!--MapperScannerConfigurer自动扫描将Mapper接口生成代理注入到Spring  -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 	 	<!-- 映射器接口文件的包路径， -->
-        <property name="basePackage" value="com.sj.ilaoshi.dao"/>
+		<property name="basePackage" value="com.sj.ilaoshi.dao"></property>				
 	</bean>
  	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource"></property>
 	</bean> 
 	
 	<bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	<tx:annotation-driven transaction-manager="txManager" />
 	
 	<!-- <context:annotation-config/>  -->
-
-
-
-
-	<mvc:default-servlet-handler/>
-	<mvc:annotation-driven/>
-
+	
+	<mvc:annotation-driven />
+	
+	
 	<!-- 设置使用注解的类所在的包 -->
-	<context:component-scan base-package="com.sj.ilaoshi"/>
+	<context:component-scan base-package="com.sj.ilaoshi" />
 
-
-	<mvc:resources mapping="/resources/images/**" location="/resources/images/" />
-	<mvc:resources mapping="/resources/js/**" location="/resources/js/" />
-	<mvc:resources mapping="/resources/css/**" location="/resources/css/" />
-
-	<!--&lt;!&ndash; 访问拦截  &ndash;&gt;-->
-	<!--<mvc:interceptors>-->
-		<!--<mvc:interceptor>-->
-			<!--<mvc:mapping path="/**/**"/>-->
-			<!--<bean class="com.sj.ilaoshi.interceptor.LoginHandlerInterceptor"/>-->
-		<!--</mvc:interceptor>-->
-	<!--</mvc:interceptors>-->
-
-
-	<!--&lt;!&ndash;&ndash;&gt;-->
-	<!--&lt;!&ndash;&lt;!&ndash; 配置SpringMVC的视图解析器 &ndash;&gt;&ndash;&gt;-->
-	<!--&lt;!&ndash;<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">&ndash;&gt;-->
-	<!--&lt;!&ndash;<property name="prefix" value="/WEB-INF/jsp/"/>&ndash;&gt;-->
-	<!--&lt;!&ndash;<property name="suffix" value=".jsp"/>&ndash;&gt;-->
-	<!--&lt;!&ndash;</bean>&ndash;&gt;-->
-
-	<!--&lt;!&ndash; 避免IE执行AJAX时,返回JSON出现下载文件 &ndash;&gt;-->
-	<!--<bean id="mappingJacksonHttpMessageConverter"-->
-		  <!--class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">-->
-		<!--<property name="supportedMediaTypes">-->
-			<!--<list>-->
-				<!--<value>text/html;charset=UTF-8</value>-->
-				<!--<value>text/plain;charset=UTF-8</value>-->
-			<!--</list>-->
-		<!--</property>-->
-	<!--</bean>-->
-
-	<!--<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" >-->
-		<!--<property name="messageConverters">-->
-			<!--<list>-->
-				<!--<ref bean="mappingJacksonHttpMessageConverter" />&lt;!&ndash; json转换器 &ndash;&gt;-->
-				<!--<bean class = "org.springframework.http.converter.StringHttpMessageConverter">-->
-					<!--<property name = "supportedMediaTypes">-->
-						<!--<list>-->
-							<!--<value>text/html;charset=UTF-8</value>-->
-						<!--</list>-->
-					<!--</property>-->
-				<!--</bean>-->
-			<!--</list>-->
-		<!--</property>-->
-	<!--</bean>-->
-
-
-	<!--&lt;!&ndash; 上传拦截，如最大上传值及最小上传值 &ndash;&gt;-->
-	<!--<bean id="multipartResolver"   class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-		<!--<property name="maxUploadSize" value="104857600"/>-->
-		<!--<property name="maxInMemorySize" value="4096"/>-->
-		<!--<property name="defaultEncoding" value="utf-8"/>-->
-	<!--</bean>-->
-
-
-
-
-
+	
+	
+	
+	<mvc:resources mapping="/rescoure/images/**" location="/rescoure/images/" />
+	<mvc:resources mapping="/rescoure/js/**" location="/rescoure/js/" />
+	<mvc:resources mapping="/rescoure/css/**" location="/rescoure/css/" />
 </beans>

@@ -2,7 +2,7 @@ package com.sj.ilaoshi.entity;
 
 
 
-public class User extends BaseModel{
+public class User{
 	private String userid;
 	private String username;
 	private String age;

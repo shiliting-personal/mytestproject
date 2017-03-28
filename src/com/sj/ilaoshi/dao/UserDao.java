@@ -10,10 +10,6 @@ import java.util.Map;
 
 public interface UserDao {
 	public List<User> findUser(Map<String, Object> map);
-
-
-
-
 	
 	
 	
