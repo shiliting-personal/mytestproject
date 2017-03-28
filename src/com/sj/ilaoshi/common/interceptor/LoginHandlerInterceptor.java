@@ -28,8 +28,10 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
             //跳转到登录页面
         }
         Long userId=userIdentityService.getUserId(uniqueId);
-        if(userId==null){
+        if(userId==null) {
             //唯一标识验证无效，跳转到登录页面
+
+        }
 
         return true;
     }
