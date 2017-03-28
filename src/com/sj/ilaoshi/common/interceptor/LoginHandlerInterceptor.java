@@ -26,10 +26,14 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 
         if(StringUtils.isNullOrEmpty(uniqueId)){
             //跳转到登录页面
+            httpServletResponse.sendRedirect("redirect:/login");
+            return false;
         }
         Long userId=userIdentityService.getUserId(uniqueId);
         if(userId==null) {
             //唯一标识验证无效，跳转到登录页面
+            httpServletResponse.sendRedirect("redirect:/login");
+            return false;
 
         }
 
