@@ -1,7 +1,7 @@
 package com.sj.ilaoshi.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sj.ilaoshi.constants.Constants;
+import com.sj.ilaoshi.common.constants.Constants;
 import com.sj.ilaoshi.entity.User;
 import com.sj.ilaoshi.service.UserService;
 import net.sf.json.JSONArray;

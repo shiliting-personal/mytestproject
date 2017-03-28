@@ -7,7 +7,7 @@
  * 2013-2016. All rights reserved.
  */
 
-package com.sj.ilaoshi.enumerate;
+package com.sj.ilaoshi.common.enumerate;
 
 /**
  * 枚举接口

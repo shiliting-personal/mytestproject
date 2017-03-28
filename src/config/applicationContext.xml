@@ -61,7 +61,21 @@
 	
 	
 	
-	<mvc:resources mapping="/rescoure/images/**" location="/rescoure/images/" />
-	<mvc:resources mapping="/rescoure/js/**" location="/rescoure/js/" />
-	<mvc:resources mapping="/rescoure/css/**" location="/rescoure/css/" />
+	<mvc:resources mapping="/resources/images/**" location="/resources/images/" />
+	<mvc:resources mapping="/resources/js/**" location="/resources/js/" />
+	<mvc:resources mapping="/resources/css/**" location="/resources/css/" />
+
+	<!-- 访问拦截  -->
+	<mvc:interceptors>
+        <mvc:interceptor>
+        <mvc:mapping path="/**"/>
+            <bean class="com.sj.ilaoshi.common.interceptor.LoginHandlerInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="**/api/**"/>
+            <bean class="com.sj.ilaoshi.common.interceptor.ApiHandlerInterceptor"/>
+        </mvc:interceptor>
+	</mvc:interceptors>
+    <mvc:exclude-mapping path="/check/**"/>
+
 </beans>

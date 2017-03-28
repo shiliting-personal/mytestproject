@@ -1,4 +1,4 @@
-package com.sj.ilaoshi.util;
+package com.sj.ilaoshi.common.util;
 
 /**
  * Created by Administrator on 2017/3/27.
