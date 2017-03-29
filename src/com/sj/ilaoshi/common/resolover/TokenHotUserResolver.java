@@ -15,7 +15,6 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Method;
 
 /**
  *  token转HotUser处理器
@@ -36,9 +35,9 @@ public class TokenHotUserResolver implements HandlerMethodArgumentResolver {
         HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
 
         String token =request.getParameter("data");
-        Method method=parameter.getMethod();
-        method.invoke(method.getClass(),new Object[]{"i love you","i fuck you"});
-        return null;
+//        Method method=parameter.getMethod();
+//        method.invoke(null,new Object[]{"i love you","i fuck you"});
+        return "123";
 
 //        if(StringUtils.isEmpty(token)){
 //            return null;

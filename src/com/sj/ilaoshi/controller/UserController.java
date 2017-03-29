@@ -1,7 +1,6 @@
 package com.sj.ilaoshi.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sj.ilaoshi.common.resolover.TokenHotUser;
 import com.sj.ilaoshi.common.util.ModelMapUtil;
 import com.sj.ilaoshi.entity.User;
 import com.sj.ilaoshi.service.UserService;
@@ -59,8 +58,12 @@ public class UserController {
 	
 	@RequestMapping(value = "/login")
     @ResponseBody
-    @TokenHotUser
-    public ModelMap login(String userid, String password)  throws Exception{
+    public ModelMap login(String data)  throws Exception{
+	    Map map=JSONObject.parseObject(data);
+
+
+
+
 		
 //		System.out.println("-----"+request.getMethod());
 //
